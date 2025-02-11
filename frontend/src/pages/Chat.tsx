@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Typography, Box, IconButton, Button, Avatar } from "@mui/material";
 import { AuthContext } from "../providers/AuthProvider";
 import ChatLine from "../components/ChatLine";
@@ -17,7 +17,7 @@ type ChatType = {
 
 const welcomeChat: ChatType = {
   role: "assistant",
-  content: "Hi, how can I help you",
+  content: "Bonjour, comment je peux vous aider",
 };
 
 const Chat = () => {
