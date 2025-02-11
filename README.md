@@ -1,6 +1,6 @@
 # MERN Stack AI Chatbot 
-## French Version (Tous les contenus sont en français, conçus pour les utilisateurs francophones)
 
+**This web app is all in French because I want to build an app that dedicated to people who speak French by using the AI made from France**.
 A secure AI chatbot application built with MERN Stack and Mistral Small model (from Mistral AI - France’s powerhouse for cutting-edge open AI models)
 
 ## Pages
