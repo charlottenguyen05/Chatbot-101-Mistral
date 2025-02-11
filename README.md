@@ -1,6 +1,26 @@
-# MERN Stack AI Chatbot
+# MERN Stack AI Chatbot French Version (Tous les contenus sont en français, conçus pour les utilisateurs francophones)
 
-A secure AI chatbot application built with MERN Stack and Mistral AI. 
+A secure AI chatbot application built with MERN Stack and Mistral Small model (from Mistral AI - France’s powerhouse for cutting-edge open AI models)
+
+## Pages
+* **Landing page**
+  
+![Alt text](https://i.imgur.com/gOECQAr.png)
+
+
+* **Chat with Mistral Small**
+  
+![Alt text](https://i.imgur.com/H8HmXXp.png)
+
+
+* **Login Page**
+
+![Alt text](https://i.imgur.com/5ZSwYbe.png)
+
+
+* **Signup Page**
+
+![Alt text](https://i.imgur.com/1eizjtZ.png)
 
 ## Features
 
@@ -15,7 +35,8 @@ A secure AI chatbot application built with MERN Stack and Mistral AI.
 - Express.js
 - React
 - Node.js
-- Mistral AI
+- Mistral AI API
+- JWT for Authentication
 
 ## Security
 
