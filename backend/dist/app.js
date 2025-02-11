@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_BASEURL,
     credentials: true,
 }));
 // Remove morgan in production email

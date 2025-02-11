@@ -144,7 +144,7 @@ const Chat = () => {
             fontWeight: "600",
           }}
         >
-          Model: Mistral Nemo
+          Model: Mistral Small
         </Typography>
         <Box
           id="scroll-box"

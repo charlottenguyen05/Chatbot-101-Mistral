@@ -32,7 +32,6 @@ export function sendTokenInCookies(res: Response, id: string, email: string) {
         httpOnly: true,
         signed: true,
         path: "/",
-        sameSite: "strict",
         domain: "localhost",
         maxAge: 24 * 60 * 60 * 1000 * 7,  // 7 days expiration
     })

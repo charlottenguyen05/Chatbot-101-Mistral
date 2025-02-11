@@ -13,7 +13,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET))
 
 app.use(
     cors({
-        origin: process.env.VITE_APP_BACKEND_BASEURL,
+        origin: process.env.FRONTEND_BASEURL,
         credentials: true,
     })
 )

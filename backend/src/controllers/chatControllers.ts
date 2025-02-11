@@ -31,7 +31,7 @@ export async function conversation(req: Request, res: Response, next: NextFuncti
         // Get the response from Mistral AI
         const mistral = new Mistral({ apiKey: process.env.MISTRAL_SECRET ?? "" })
         const chatResponse = await mistral.chat.complete({
-            model: "open-mistral-nemo",
+            model: "mistral-small-latest",
             messages: chatHistory
         })
 
