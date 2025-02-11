@@ -1,4 +1,5 @@
-# MERN Stack AI Chatbot French Version (Tous les contenus sont en français, conçus pour les utilisateurs francophones)
+# MERN Stack AI Chatbot 
+## French Version (Tous les contenus sont en français, conçus pour les utilisateurs francophones)
 
 A secure AI chatbot application built with MERN Stack and Mistral Small model (from Mistral AI - France’s powerhouse for cutting-edge open AI models)
 
