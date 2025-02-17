@@ -10,7 +10,7 @@ const Home = () => {
     <Box
       component="section"
       sx={{
-        height: 700,
+        height: 650,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

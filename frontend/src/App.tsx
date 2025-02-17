@@ -5,6 +5,7 @@ import Signup from "./pages/Signup"
 import NotFound from "./pages/NotFound"
 import Home from "./pages/Home"
 import {Routes, Route} from "react-router"
+import Footer from "./pages/Footer"
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/chat" element={<Chat/>}/>
         <Route path="/*" element={<NotFound/>}/>
       </Routes>
+      <Footer/>
     </main>
   )
 }
