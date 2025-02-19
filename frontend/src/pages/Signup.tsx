@@ -3,6 +3,7 @@ import { FormEvent, useContext, useState } from "react";
 import FormField from "../components/FormField";
 import {toast} from "react-hot-toast"
 import { AuthContext, AuthUser } from "../providers/AuthProvider";
+import Footer from "./Footer";
 
 const Signup = () => {
   const authContext : AuthUser = useContext(AuthContext)
@@ -18,6 +19,7 @@ const Signup = () => {
     try {
       await authContext.signup(name, email, password);
     } catch (error) {
+      console.log(error)
       throw new Error("Can not signup")
     }
   }
@@ -33,7 +35,7 @@ const Signup = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        gap: 3,
+        gap: 2,
       }}
     >
       <Typography variant="h4" color="white" sx={{fontWeight: 800}}>
@@ -42,7 +44,7 @@ const Signup = () => {
       <Box
         component="form"
         onSubmit={handleSubmit}
-        sx={{ display: "flex", flexDirection: "column", gap: 5 }}
+        sx={{ display: "flex", flexDirection: "column", gap: 2 }}
       >
         <FormField state={name} setState={setName} lowercase="name"/>
         <FormField state={email} setState={setEmail} lowercase="email" />
@@ -65,6 +67,7 @@ const Signup = () => {
           S'inscrire
         </Button>
       </Box>
+      <Footer/>
     </Container>
   );
 };

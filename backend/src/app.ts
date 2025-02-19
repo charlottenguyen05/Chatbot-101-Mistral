@@ -13,7 +13,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET))
 
 app.use(
     cors({
-        origin: process.env.FRONTEND_BASEURL,
+        origin: process.env.FRONTEND_BASEURL || "http://localhost:5173",
         credentials: true,
     })
 )

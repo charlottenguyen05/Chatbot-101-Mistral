@@ -3,6 +3,7 @@ import { GoArrowRight } from "react-icons/go";
 import { Link } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import Footer from "./Footer";
 
 const Home = () => {
   const auth = useContext(AuthContext)
@@ -44,7 +45,9 @@ const Home = () => {
       >
         Commencer une conversation <GoArrowRight size={20} style={{marginLeft: 5}}/>
       </Button>
+      <Footer/>
     </Box>
+    
   );
 };
 

@@ -9,8 +9,6 @@ const Footer = () => {
         py: 2,
         textAlign: "center",
         color: "white",
-        position: "fixed",
-        bottom: 0,
       }}
     >
       <Typography variant="body2" sx={{ fontWeight: 700 }}>

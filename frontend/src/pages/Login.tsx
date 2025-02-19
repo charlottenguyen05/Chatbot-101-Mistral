@@ -3,6 +3,7 @@ import { FormEvent, useContext, useState } from "react";
 import FormField from "../components/FormField";
 import {toast} from "react-hot-toast"
 import { AuthContext, AuthUser } from "../providers/AuthProvider";
+import Footer from "./Footer";
 
 
 const Login = () => {
@@ -63,6 +64,7 @@ const Login = () => {
           Se connecter
         </Button>
       </Box>
+      <Footer/>
     </Container>
   );
 };

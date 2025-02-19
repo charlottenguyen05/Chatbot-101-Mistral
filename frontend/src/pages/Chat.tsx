@@ -9,6 +9,7 @@ import {
 } from "../services/chatService";
 import { IoMdSend } from "react-icons/io";
 import red from "@mui/material/colors/red";
+import Recorder from "../components/Recorder";
 
 type ChatType = {
   role: "assistant" | "user";
@@ -192,6 +193,7 @@ const Chat = () => {
               fontSize: "20px",
             }}
           />
+          <Recorder/>
           <IconButton type="submit" sx={{ color: "white", mx: 1 }}>
             <IoMdSend />
           </IconButton>
