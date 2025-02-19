@@ -23,7 +23,7 @@ export interface AuthUser {
   isLoggedin: boolean;
   login: (email: string, password: string) => Promise<UserDataResponse>;
   logout: () => Promise<number>;
-  signup: (email: string, password: string, name: string) => Promise<void>;
+  signup: (email: string, password: string, name: string) => Promise<UserDataResponse>;
 }
 
 // B1: Create a context that will store all the passing props to children
@@ -32,7 +32,7 @@ const initialUser: AuthUser = {
   isLoggedin: false,
   login: async () => Promise.resolve(null),
   logout: async () => Promise.resolve(0),
-  signup: async () => Promise.resolve(),
+  signup: async () => Promise.resolve(null),
 };
 
 export const AuthContext = createContext<AuthUser>(initialUser);
@@ -86,7 +86,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     name: string,
     email: string,
     password: string
-  ): Promise<void> {
+  ): Promise<UserDataResponse>{
     const signupData: UserDataResponse = await signupUser(
       name,
       email,
