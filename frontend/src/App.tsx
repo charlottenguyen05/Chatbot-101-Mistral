@@ -6,7 +6,6 @@ import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
 import { Routes, Route } from "react-router";
 import PrivateRoute from "./components/PrivateRoute";
-import Recorder from "./components/Recorder";
 
 function App() {
   return (
@@ -16,11 +15,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/inscription" element={<Signup />} />
         <Route path="/connexion" element={<Login />} />
-        <Route path="/chat" element={<Chat />} />
-        {/* <Route path="/chat" element={<PrivateRoute />}>
+        <Route path="/chat" element={<PrivateRoute />}>
           <Route path="" element={<Chat />} />
-        </Route> */}
-        <Route path="/recorder" element={<Recorder />} />
+        </Route>
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </main>

@@ -5,6 +5,7 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const PrivateRoute: React.FC = () => {
   const auth = useContext(AuthContext);
+  console.log("is logged in" + auth.isLoggedin)
   if (!auth.isLoggedin) {
     return <Navigate to="/connexion" replace />;
   }

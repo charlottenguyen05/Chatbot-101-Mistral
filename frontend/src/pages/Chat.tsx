@@ -25,13 +25,15 @@ const Chat = () => {
   const auth = useContext(AuthContext);
   const [chats, setChats] = useState<ChatType[]>([welcomeChat]);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const [message, setMessage] = useState<string>("")
+
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const content = formData.get("content") as string;
-    if (inputRef.current && inputRef) {
-      inputRef.current.value = "";
+    if (inputRef.current) {
+      setMessage("");
     }
     const newMessage: ChatType = { role: "user", content };
     setChats((prev) => [...prev, newMessage]);
@@ -39,9 +41,6 @@ const Chat = () => {
     // Send new message to Mistral API and update with a response
     const response = await sendChatRequest(content);
     setChats([...response.chats]);
-
-    const messages = document.getElementById('scroll-box');
-    messages!.scrollTop = messages!.scrollHeight
   };
 
   const handleDeleteChats = async () => {
@@ -60,6 +59,14 @@ const Chat = () => {
     getAllChats();
   }, []);
 
+  useEffect(() => {
+    const messages = document.getElementById('scroll-box');
+    if (messages) {
+      messages.scrollTop = messages.scrollHeight;
+    }
+  })
+
+
   return (
     <Box
       sx={{
@@ -67,7 +74,7 @@ const Chat = () => {
         flex: 1,
         width: "100%",
         height: "100%",
-        mt: 15,
+        mt: 14,
         gap: 3,
       }}
     >
@@ -138,7 +145,7 @@ const Chat = () => {
       >
         <Typography
           sx={{
-            fontSize: "30px",
+            fontSize: "25px",
             color: "white",
             mb: 2,
             mx: "auto",
@@ -178,8 +185,9 @@ const Chat = () => {
           component="form"
           onSubmit={handleSubmit}
         >
-          {" "}
           <input
+            value={message}
+            onChange={(e) => {setMessage(e.target.value)}}
             ref={inputRef}
             name="content"
             type="text"
@@ -193,7 +201,7 @@ const Chat = () => {
               fontSize: "20px",
             }}
           />
-          <Recorder/>
+          <Recorder setMessage={setMessage}/>
           <IconButton type="submit" sx={{ color: "white", mx: 1 }}>
             <IoMdSend />
           </IconButton>

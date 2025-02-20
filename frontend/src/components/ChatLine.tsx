@@ -33,9 +33,9 @@ function isCodeBlock(str: string) {
     str.includes("[") ||   
     str.includes("]") ||   
     str.includes("{") || 
-    str.includes("}") ||  
-    str.includes("#") ||   
-    str.includes("//")     
+    str.includes("}") ||   
+    str.includes("npm") ||
+    str.includes("├──")
   ) {
     return true;
   }
@@ -56,6 +56,7 @@ const ChatLine = ({
   const auth = useContext(AuthContext);
   // Use the helper function to attempt to extract code blocks from the content.
   const messageBlocks = extractCodeFromString(content);
+  console.log(content)
   // Conditional rendering based on the sender's role.
   return role == "assistant" ? (
     // Rendering for the assistant's message.
@@ -78,7 +79,7 @@ const ChatLine = ({
       <Box>
         {/* If no code blocks were found, render the entire content as simple text. */}
         {!messageBlocks && (
-          <Typography sx={{ fontSize: "18px" }}><Markdown>{content}</Markdown></Typography>
+          <Typography sx={{ fontSize: "16px" }}><Markdown>{content}</Markdown></Typography>
         )}
 
         {/* If code blocks exist, iterate over each block. */}
@@ -93,7 +94,7 @@ const ChatLine = ({
               </SyntaxHighlighter>
             ) : (
               // Otherwise, render the block as standard text.
-              <Typography sx={{ fontSize: "18px" }}><Markdown>{content}</Markdown></Typography>
+              <Typography sx={{ fontSize: "16px" }}><Markdown>{block}</Markdown></Typography>
             )
           )}
       </Box>
@@ -120,7 +121,7 @@ const ChatLine = ({
       <Box>
         {/* If no code blocks are detected, render the entire content as simple text. */}
         {!messageBlocks && (
-          <Typography sx={{ fontSize: "18px" }}>{content}</Typography>
+          <Typography sx={{ fontSize: "16px" }}>{content}</Typography>
         )}
 
         {/* If there are code blocks, iterate over and render each block appropriately. */}
@@ -134,7 +135,7 @@ const ChatLine = ({
               </SyntaxHighlighter>
             ) : (
               // Otherwise, render the block as regular text.
-              <Typography sx={{ fontSize: "18px" }}><Markdown>{block}</Markdown></Typography>
+              <Typography sx={{ fontSize: "16px" }}><Markdown>{block}</Markdown></Typography>
             )
           )}
       </Box>
