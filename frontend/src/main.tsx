@@ -8,7 +8,7 @@ import AuthProvider from "./providers/AuthProvider.tsx";
 import { Toaster } from "react-hot-toast";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:3000/api";  // Ti nua phai sua thanh dia chi deploy
+axios.defaults.baseURL = "http://localhost:3000/api"
 axios.defaults.withCredentials = true;
 
 createRoot(document.getElementById("root")!).render(

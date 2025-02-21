@@ -43,14 +43,6 @@ export async function conversation(req: Request, res: Response, next: NextFuncti
 
         return res.status(500).json({ error: "Something went wrong when receiving the response from Mistral" })
     }
-
-    // For streaming 
-    // for await (const chunk of chatResponse) {
-    //     const streamText = chunk.data.choices[0].delta.content
-    //     if (typeof streamText === 'string') {
-    //         process.stdout.write(streamText);
-    //     }
-    // }
 }
 
 

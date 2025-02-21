@@ -1,31 +1,19 @@
 import Markdown from 'react-markdown'
 import { Box, Avatar, Typography } from "@mui/material";
 import { useContext } from "react";
-
-// Import the SyntaxHighlighter component to display formatted code blocks.
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-
-// Import a dark theme style for the code highlighting.
 import { coldarkDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { AuthContext } from "../providers/AuthProvider";
 
-/**
- * A helper function that checks if a message contains code blocks marked by triple backticks (```).
- * If found, it splits the message into an array of strings separated by the triple backticks.
-**/
+
 function extractCodeFromString(message: string) {
-  // Check if the message includes the triple backtick marker.
   if (message.includes("```")) {
-    // Split the message into blocks based on the triple backticks.
     const blocks = message.split("```");
-    return blocks; // Return the resulting array of blocks.
+    return blocks; 
   }
 }
 
-/**
- * A helper function to determine if a given string segment looks like code.
- * It checks for the presence of common code characters such as '=', ';', '[', ']', '{', '}', '#', and '//'.
- **/
+
 function isCodeBlock(str: string) {
   if (
     str.includes("=") ||   
@@ -57,17 +45,17 @@ const ChatLine = ({
   // Use the helper function to attempt to extract code blocks from the content.
   const messageBlocks = extractCodeFromString(content);
   console.log(content)
-  // Conditional rendering based on the sender's role.
+
   return role == "assistant" ? (
     // Rendering for the assistant's message.
     <Box
       sx={{
-        display: "flex",           // Arrange child components in a flex row.
-        p: 2,                      // Apply padding.
-        bgcolor: "#004d5612",      // Set a semi-transparent background color for the assistant.
-        gap: 2,                    // Set the gap between child elements.
-        borderRadius: 2,           // Round the corners.
-        my: 1,                     // Set vertical margins.
+        display: "flex",           
+        p: 2,                      
+        bgcolor: "#072038",      
+        gap: 2,                    
+        borderRadius: 2,       
+        my: 1,              
       }}
     >
 
@@ -103,28 +91,22 @@ const ChatLine = ({
     // Rendering for the user's message.
     <Box
       sx={{
-        display: "flex",         // Arrange child components in a flex row.
-        p: 2,                    // Apply padding.
-        bgcolor: "#004d56",      // Set a background color for the user message.
-        gap: 2,                  // Set the gap between child elements.
-        borderRadius: 2,         // Round the corners.
+        display: "flex",        
+        p: 2,                    
+        bgcolor: "#004d56",    
+        gap: 2,                 
+        borderRadius: 2,      
       }}
     >
-      {/* Render the user's avatar.
-          The avatar shows the initials of the user, extracted from the user's name.
-          It assumes the user's name has at least two parts (e.g., "First Last"). */}
       <Avatar sx={{ ml: "0", bgcolor: "red", color: "white" }}>
-        {auth?.user?.name[0]} {/* First letter of the user's first name */}
+        {auth?.user?.name[0]}
       </Avatar>
 
       {/* Container for the message content. */}
       <Box>
-        {/* If no code blocks are detected, render the entire content as simple text. */}
         {!messageBlocks && (
           <Typography sx={{ fontSize: "16px" }}>{content}</Typography>
         )}
-
-        {/* If there are code blocks, iterate over and render each block appropriately. */}
         {messageBlocks &&
           messageBlocks.length &&
           messageBlocks.map((block) =>

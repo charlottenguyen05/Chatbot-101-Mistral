@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// Frontend: Do a post request to the backend at localhost:3000/api/chatbot/new with body = prompt
 export async function sendChatRequest(prompt: string) {
     const res = await axios.post("/chatbot/new", {prompt})
     if (!res) {

@@ -1,24 +1,34 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import { FormEvent, useContext, useState } from "react";
 import FormField from "../components/FormField";
-import {toast} from "react-hot-toast"
+import { toast } from "react-hot-toast";
 import { AuthContext, AuthUser } from "../providers/AuthProvider";
 import Footer from "./Footer";
-
+import schema from "../joiSchema";
 
 const Login = () => {
-  const authContext : AuthUser = useContext(AuthContext)
+  const authContext: AuthUser = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget as HTMLFormElement);
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-    try {
-      await authContext.login(email, password);
-    } catch (error) {
-      throw new Error("Can not login")
+    const { error } = schema.validate({ email, password });
+    const newErrors: { [key: string]: string } = {};
+    if (error) {
+      error.details.forEach((err) => {
+        newErrors[err.path[0]] = err.message;
+      });
+      setErrors(newErrors);
+    } else {
+      try {
+        await authContext.login(email, password);
+      } catch (error) {
+        toast.error("Wrong password or email. Please try again")
+      }
     }
   }
 
@@ -36,7 +46,7 @@ const Login = () => {
         gap: 3,
       }}
     >
-      <Typography variant="h4" color="white"  sx={{fontWeight: 800}}>
+      <Typography variant="h4" color="white" sx={{ fontWeight: 800 }}>
         Connexion
       </Typography>
       <Box
@@ -44,8 +54,13 @@ const Login = () => {
         onSubmit={handleSubmit}
         sx={{ display: "flex", flexDirection: "column", gap: 5 }}
       >
-        <FormField state={email} setState={setEmail} lowercase="email" />
-        <FormField state={password} setState={setPassword} lowercase="password" />
+        <FormField state={email} setState={setEmail} lowercase="email" error={errors.email}/>
+        <FormField
+          state={password}
+          setState={setPassword}
+          lowercase="password"
+          error={errors.password}
+        />
         <Button
           type="submit"
           sx={{
@@ -64,7 +79,7 @@ const Login = () => {
           Se connecter
         </Button>
       </Box>
-      <Footer/>
+      <Footer />
     </Container>
   );
 };

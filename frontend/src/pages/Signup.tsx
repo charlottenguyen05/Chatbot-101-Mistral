@@ -4,6 +4,7 @@ import FormField from "../components/FormField";
 import { AuthContext, AuthUser } from "../providers/AuthProvider";
 import Footer from "./Footer";
 import schema from "../joiSchema";
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const authContext: AuthUser = useContext(AuthContext);
@@ -24,13 +25,11 @@ const Signup = () => {
         newErrors[err.path[0]] = err.message;
       });
       setErrors(newErrors);
-      
     } else {
       try {
         await authContext.signup(name, email, password);
       } catch (error) {
-        console.log(error);
-        throw new Error("Can not signup");
+        toast.error("Can not signup please try again")
       }
     }
   }
