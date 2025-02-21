@@ -5,18 +5,24 @@ const FormField = ({
   state,
   setState,
   lowercase,
+  error,
 }: {
   state: string;
   lowercase: string;
   setState: React.Dispatch<React.SetStateAction<string>>;
+  error: string;
 }) => {
   return (
     <Box component="div">
-      <FormLabel>{lowercase.charAt(0).toUpperCase() + lowercase.slice(1)}</FormLabel>
+      <FormLabel>
+        {lowercase.charAt(0).toUpperCase() + lowercase.slice(1)}
+      </FormLabel>
       <TextField
         variant="outlined"
-        type={lowercase === "name" ? "text" : lowercase} 
+        type={lowercase === "name" ? "text" : lowercase}
         fullWidth
+        error={!!error}
+        helperText={error}
         name={lowercase}
         value={state}
         onChange={(e) => setState(e.target.value)}
@@ -34,14 +40,12 @@ const FormField = ({
             "&:hover fieldset": {
               borderColor: "white",
             },
-            // // Target focused state
-            // "&.Mui-focused fieldset": {
-            //   borderColor: "secondary",
-            // },
           },
         }}
       />
-      {lowercase === "password" && <FormHelperText>Il faut avoir au moins 6 caracteres</FormHelperText>}
+      {lowercase === "password" && (
+        <FormHelperText>Il faut avoir au moins 6 caracteres</FormHelperText>
+      )}
     </Box>
   );
 };

@@ -1,13 +1,14 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import { FormEvent, useContext, useState } from "react";
 import FormField from "../components/FormField";
-import {toast} from "react-hot-toast"
 import { AuthContext, AuthUser } from "../providers/AuthProvider";
 import Footer from "./Footer";
+import schema from "../joiSchema";
 
 const Signup = () => {
-  const authContext : AuthUser = useContext(AuthContext)
-  const [name, setName] = useState("");
+  const authContext: AuthUser = useContext(AuthContext);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [name, setName] = useState<string>("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   async function handleSubmit(e: FormEvent) {
@@ -16,11 +17,21 @@ const Signup = () => {
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-    try {
-      await authContext.signup(name, email, password);
-    } catch (error) {
-      console.log(error)
-      throw new Error("Can not signup")
+    const { error } = schema.validate({ name, email, password });
+    const newErrors: { [key: string]: string } = {};
+    if (error) {
+      error.details.forEach((err) => {
+        newErrors[err.path[0]] = err.message;
+      });
+      setErrors(newErrors);
+      
+    } else {
+      try {
+        await authContext.signup(name, email, password);
+      } catch (error) {
+        console.log(error);
+        throw new Error("Can not signup");
+      }
     }
   }
 
@@ -38,7 +49,7 @@ const Signup = () => {
         gap: 2,
       }}
     >
-      <Typography variant="h4" color="white" sx={{fontWeight: 800}}>
+      <Typography variant="h4" color="white" sx={{ fontWeight: 800 }}>
         S'inscire
       </Typography>
       <Box
@@ -46,9 +57,24 @@ const Signup = () => {
         onSubmit={handleSubmit}
         sx={{ display: "flex", flexDirection: "column", gap: 2 }}
       >
-        <FormField state={name} setState={setName} lowercase="name"/>
-        <FormField state={email} setState={setEmail} lowercase="email" />
-        <FormField state={password} setState={setPassword} lowercase="password"/>
+        <FormField
+          state={name}
+          setState={setName}
+          lowercase="name"
+          error={errors.name}
+        />
+        <FormField
+          state={email}
+          setState={setEmail}
+          lowercase="email"
+          error={errors.email}
+        />
+        <FormField
+          state={password}
+          setState={setPassword}
+          lowercase="password"
+          error={errors.password}
+        />
         <Button
           type="submit"
           sx={{
@@ -67,9 +93,9 @@ const Signup = () => {
           S'inscrire
         </Button>
       </Box>
-      <Footer/>
+      <Footer />
     </Container>
   );
 };
 
-export default Signup
+export default Signup;

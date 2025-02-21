@@ -2,7 +2,7 @@ import "regenerator-runtime/runtime";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import { Box, IconButton, Tooltip } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 import MicIcon from "@mui/icons-material/Mic";
 import StopIcon from "@mui/icons-material/Stop";
 import { Dispatch, SetStateAction, useEffect } from "react";
@@ -49,10 +49,3 @@ const Recorder = ({
   );
 };
 export default Recorder;
-{
-  /* <p>Microphone: {listening ? 'on' : 'off'}</p>
-      <button onClick={() => SpeechRecognition.startListening()}>Start</button>
-      <button onClick={SpeechRecognition.stopListening}>Stop</button>
-      <button onClick={resetTranscript}>Reset</button>
-      <p>{transcript}</p>  */
-}
