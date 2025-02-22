@@ -1,7 +1,14 @@
 # MERN Stack AI Chatbot 
 
 **This web app is all in French because I want to build an app that dedicated to people who speak French by using the AI made from France**.
-A secure AI chatbot application built with MERN Stack and Mistral Small model (from Mistral AI - France’s powerhouse for cutting-edge open AI models)
+A secure AI chatbot application built with MERN Stack and integrate API from Mistral
+
+## Features
+
+- Interactive AI-powered chat interface
+- Voice to text chat
+- Message history storage in database (retrieval and deletion of chat history)
+- Secure authentication system
 
 ## Pages
 * **Landing page**
@@ -23,13 +30,6 @@ A secure AI chatbot application built with MERN Stack and Mistral Small model (f
 
 ![Alt text](https://i.imgur.com/1eizjtZ.png)
 
-## Features
-
-- Interactive AI-powered chat interface
-- Message history storage in database
-- Message retrieval and deletion
-- Secure authentication system
-
 ## Technology Stack
 
 - MongoDB
@@ -37,6 +37,7 @@ A secure AI chatbot application built with MERN Stack and Mistral Small model (f
 - React
 - Node.js
 - Mistral AI API
+- Web Speech API
 - JWT for Authentication
 
 ## Security
