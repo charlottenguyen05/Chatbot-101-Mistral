@@ -1,4 +1,4 @@
-import { Container, Typography, Button, Box } from "@mui/material";
+import { Container, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router";
 
 const NotFoundPage = () => {

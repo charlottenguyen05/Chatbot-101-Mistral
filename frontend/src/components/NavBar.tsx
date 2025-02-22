@@ -10,7 +10,7 @@ import { AuthContext } from "../providers/AuthProvider";
 
 
 const NavBar = () => {
-  const { user, isLoggedin, login, logout, signup } = useContext(AuthContext)!;
+  const { isLoggedin, logout } = useContext(AuthContext)!;
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar>
@@ -66,7 +66,7 @@ const NavBar = () => {
               <Button
                 onClick={async () => {
                   try {
-                    const res = await logout()
+                    await logout()
                   } catch (error) {
                     throw new Error("Can not logout")
                   }

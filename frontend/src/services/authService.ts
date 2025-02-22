@@ -1,4 +1,7 @@
-import { axios } from "../main.tsx";
+import axios from "axios";
+
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL
+axios.defaults.withCredentials = true;
 
 export async function loginUser(email: string, password: string) {
   // From frontend, send a HTTP post request (await axios.post(API_SERVER)) to the server (backend) to authenticate the user

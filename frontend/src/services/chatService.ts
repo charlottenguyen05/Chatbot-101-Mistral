@@ -1,5 +1,8 @@
 import axios from "axios";
 
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL
+axios.defaults.withCredentials = true;
+
 export async function sendChatRequest(prompt: string) {
     const res = await axios.post("/chatbot/new", {prompt})
     if (!res) {
