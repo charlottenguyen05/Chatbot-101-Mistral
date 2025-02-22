@@ -5,6 +5,7 @@ import { AuthContext, AuthUser } from "../providers/AuthProvider";
 import Footer from "./Footer";
 import schema from "../joiSchema";
 import toast from "react-hot-toast";
+import { ValidationErrorItem } from "joi";
 
 const Signup = () => {
   const authContext: AuthUser = useContext(AuthContext);
@@ -21,7 +22,7 @@ const Signup = () => {
     const { error } = schema.validate({ name, email, password });
     const newErrors: { [key: string]: string } = {};
     if (error) {
-      error.details.forEach((err) => {
+      error.details.forEach((err: ValidationErrorItem) => {
         newErrors[err.path[0]] = err.message;
       });
       setErrors(newErrors);
