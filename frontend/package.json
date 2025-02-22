@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "postinstall": "npm rebuild @swc/core"
+    "postinstall": "yarn rebuild @swc/core"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
