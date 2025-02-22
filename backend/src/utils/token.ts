@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken"
 import { NextFunction, Response, Request } from "express"
 
+const domain = process.env.NODE_ENV === 'production' ? '.onrender.com' : 'localhost';
+
 // Verify the JWT token
 interface JwtPayload {
     id: string;
@@ -20,7 +22,7 @@ export function sendTokenInCookies(res: Response, id: string, email: string) {
     res.clearCookie("auth_token", {
         httpOnly: true,
         path: "/",  // COokie is available to all routes (all application)
-        domain: "localhost",
+        domain: domain,
         signed: true
     })
 
@@ -32,7 +34,7 @@ export function sendTokenInCookies(res: Response, id: string, email: string) {
         httpOnly: true,
         signed: true,
         path: "/",
-        domain: "localhost",
+        domain: domain,
         maxAge: 24 * 60 * 60 * 1000 * 7,  // 7 days expiration
     })
 }
